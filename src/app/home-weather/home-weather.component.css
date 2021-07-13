@@ -26,6 +26,7 @@
   animation-duration: 10s;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
+
 }
 
 @keyframes cloudMovement{
@@ -37,23 +38,32 @@
 
 .flex-container {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: start;
+    flex-wrap: wrap;
+    background: linear-gradient(
+90deg
+ , #361854 0%,#3b0435 26%);
 }
 .flex-container > div {
   border-radius: 10px;
   width: 200px;
   height: 250px;
-  background: linear-gradient(90deg, #0f0f0f 0%,#000000 26%);
   color: white;;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   margin: 30px;
   cursor: pointer;
+  border-color: #3b0435;
+  border: 2px solid rgb(15, 2, 27);
 
 }
 divWeatherMain > p:nth-child(2) {
   background: red;
 }
 
+.forecastHeadline
+{
+  font-weight: 800;
+    font-family: cursive;
+}
 

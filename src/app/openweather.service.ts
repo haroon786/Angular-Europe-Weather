@@ -1,58 +1,91 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { forkJoin, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin, Observable, of, pipe } from 'rxjs';
+import { count, filter, first, map, pluck, skip, take } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OpenweatherService {
   response: any;
 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-
+  getData(): Observable<any> {
+    return forkJoin(
+      // as of RxJS 6.5+ we can use a dictionary of sources
+      {
+        Italy: this.http.get(
+          'https://api.openweathermap.org/data/2.5/weather?q=Italy&appid=53f8b925a7782d90827265e6495b1a27'
+        ),
+        Turkey: this.http.get(
+          'https://api.openweathermap.org/data/2.5/weather?q=Turkey&appid=53f8b925a7782d90827265e6495b1a27'
+        ),
+        Austria: this.http.get(
+          'https://api.openweathermap.org/data/2.5/weather?q=Austria&appid=53f8b925a7782d90827265e6495b1a27'
+        ),
+        Greece: this.http.get(
+          'https://api.openweathermap.org/data/2.5/weather?q=Greece&appid=53f8b925a7782d90827265e6495b1a27'
+        ),
+        Russia: this.http.get(
+          'https://api.openweathermap.org/data/2.5/weather?q=Russia&appid=53f8b925a7782d90827265e6495b1a27'
+        ),
+      }
+    )
   }
+  foreCastData(countryName:any): Observable<any>
+   {
 
-  getData():Observable<any>
-  {
-   return forkJoin(
-    // as of RxJS 6.5+ we can use a dictionary of sources
-    {
-      Italy:
-      this.http.get('https://api.openweathermap.org/data/2.5/weather?q=Italy&appid=ff1bc4683fc7325e9c57e586c20cc03e'),
-      Turkey:
-      this.http.get('https://api.openweathermap.org/data/2.5/weather?q=Turkey&appid=ff1bc4683fc7325e9c57e586c20cc03e'),
-      Austria:
-      this.http.get('https://api.openweathermap.org/data/2.5/weather?q=Austria&appid=ff1bc4683fc7325e9c57e586c20cc03e'),
-      Greece:
-      this.http.get('https://api.openweathermap.org/data/2.5/weather?q=Greece&appid=ff1bc4683fc7325e9c57e586c20cc03e'),
-      Russia:
-      this.http.get('https://api.openweathermap.org/data/2.5/weather?q=Russia&appid=ff1bc4683fc7325e9c57e586c20cc03e')
+      return this.http.get<data>(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${countryName}&appid=53f8b925a7782d90827265e6495b1a27`
+      ).pipe(
+        map((e: data) => {
+          return e.list.filter(e=>e.dt_txt.includes("21:00:00"))
+        })
+      )
 
-    }
-  )
-
-  }
-  // { google: object, microsoft: object, users: array }
-
-  // getData()
-  // {
-  //   const request1 = this.http.get('https://restcountries.eu/rest/v1/name/india');
-  //   const request2 = this.http.get('https://restcountries.eu/rest/v1/name/us');
-  //   const request3 = this.http.get('https://restcountries.eu/rest/v1/name/ame');
-  //   const request4 = this.http.get('https://restcountries.eu/rest/v1/name/ja');
-
-  //   const requestArray = [];
-  //   requestArray.push(request1);
-  //   requestArray.push(request2);
-  //   requestArray.push(request3);
-  //   requestArray.push(request4);
-
-  //   forkJoin(requestArray).subscribe(results => {
-  //     console.log(results);
-  //     this.response = results;
-  //   });
-
-  //   return this.response
-  // }
-
+   }
 }
+
+
+export interface data {
+  cod: string;
+  message: 0,
+  cnt: number;
+  list: {
+    clouds: {
+      all: number
+    }
+    dt: number
+    dt_txt: string
+    main: {
+      feels_like: number;
+      grnd_level: number;
+      humidity: number;
+      pressure: number;
+      sea_level: number;
+      temp: number;
+      temp_kf: number;
+      temp_max: number;
+      temp_min: number;
+    }
+    pop: number
+    rain: any
+    sys: {
+      pod: string;
+    }
+    visibility: number
+    weather: {
+      description: string;
+      icon: string;
+      id: number
+      main: string
+    }[]
+    wind: {
+      deg: number;
+      gust: number;
+      speed: number;
+    }
+  }[]
+}
+
+
