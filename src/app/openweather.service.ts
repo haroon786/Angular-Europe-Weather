@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { forkJoin, Observable, of, pipe } from 'rxjs';
-import { count, filter, first, map, pluck, skip, take } from 'rxjs/operators';
+import { count, filter, first, map, pluck, share, shareReplay, skip, take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class OpenweatherService {
   response: any;
-
+  header:any;
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
     return forkJoin(
       // as of RxJS 6.5+ we can use a dictionary of sources
       {
+
         Italy: this.http.get(
           'https://api.openweathermap.org/data/2.5/weather?q=Italy&appid=53f8b925a7782d90827265e6495b1a27'
         ),
@@ -29,6 +30,7 @@ export class OpenweatherService {
         Russia: this.http.get(
           'https://api.openweathermap.org/data/2.5/weather?q=Russia&appid=53f8b925a7782d90827265e6495b1a27'
         ),
+
       }
     )
   }
@@ -44,6 +46,7 @@ export class OpenweatherService {
       )
 
    }
+
 }
 
 

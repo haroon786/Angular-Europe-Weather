@@ -1,7 +1,6 @@
 <div class="flex-container">
-
-  <div  *ngFor="let ite of weatherData" >
-    <p class="forecastHeadline">Today's  Weather</p>
+  <div *ngFor="let ite of weatherData">
+    <p class="forecastHeadline">{{"Today's Weather"|translate}}</p>
     <i *ngIf="ite.isDay" class="fas fa-3x fa-sun sun"></i>
 
     <i *ngIf="!ite.isDay" class="fas fa-3x fa-moon moon"></i>
@@ -9,22 +8,27 @@
     <div class="cloudDiv">
       <i class="fas fa-cloud fa-3x cloud"></i>
     </div>
-    <p style="margin-top: 20px;">Temp   :    {{ ite.temp }}°C</p>
-    <p>Sunrise :  {{ ite.sunrise }}</p>
-    <p>Sunset  :  {{ ite.sunset }}</p>
-    <p>Contry :  <span style="font-size:large;"> {{ ite.countryName }}</span></p>
+    <p style="margin-top: 20px">{{ "temp" | translate }} : {{ ite.temp }}°C</p>
+    <p>{{ "Sunrise" | translate }} : {{ ite.sunrise }}</p>
+    <p>{{ "Sunset" | translate }} : {{ ite.sunset }}</p>
+    <p style="font-size: 20px">
+      {{ "Contry" | translate }} :
+      <!-- <span style="font-size:large;"> {{ ite.countryName }}</span></p> -->
+
+      {{ ite.countryName | translate }}
+    </p>
   </div>
 
-  <div  *ngFor="let item of forecastArr">
-  <p class="forecastHeadline">ForeCast  Weather</p>
+  <div *ngFor="let item of forecastArr">
+    <p class="forecastHeadline">ForeCast Weather</p>
 
     <i class="fas fa-3x fa-moon moon"></i>
-    <br/>
+    <br />
     <div class="cloudDiv">
       <i class="fas fa-water fa-3x cloud"></i>
     </div>
-    <p style="margin-top: 20px;">Date   :    {{ item.date*1000| date  }}</p>
-    <p>Temp :  {{ item.temp }}°C</p>
-    <p>Sea level  :  {{ item.seaLevel }}</p>
+    <p style="margin-top: 20px">{{'Date'|translate}} : {{ item.date * 1000 | date }}</p>
+    <p>{{'temp'|translate}} :{{ item.temp }}°C</p>
+    <p>{{'Sea level'|translate}} : {{ item.seaLevel }}</p>
   </div>
 </div>

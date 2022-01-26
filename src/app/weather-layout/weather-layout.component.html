@@ -25,7 +25,7 @@
             src="http://purecatamphetamine.github.io/country-flag-icons/3x2/RU.svg" />
         </a>
 
-
+        <!-- <a mat-list-item  [routerLink]="['/university-college']" routerLinkActive="router-link-active">University</a> -->
 
       </mat-nav-list>
 
@@ -37,13 +37,14 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <!-- <span>QuickDesk</span> -->
+
+      <app-language-control></app-language-control>
     </mat-toolbar>
     <!-- Add Content Here -->
     <div *ngIf="arr.length>0">
       <app-home-weather [forecastArr]="forecastarr" [weatherData]="countryWeatherArr"></app-home-weather>
     </div>
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
 
   </mat-sidenav-content>
 </mat-sidenav-container>

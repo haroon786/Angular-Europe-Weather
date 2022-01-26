@@ -8,6 +8,12 @@ import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion'
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
+
 @NgModule({
 
   imports: [
@@ -20,6 +26,9 @@ import {MatExpansionModule} from '@angular/material/expansion'
     MatCardModule,
     MatInputModule,
     MatExpansionModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule
   ],
   exports: [
     LayoutModule,
@@ -31,6 +40,9 @@ import {MatExpansionModule} from '@angular/material/expansion'
     MatCardModule,
     MatInputModule,
     MatExpansionModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule
   ]
 
 })

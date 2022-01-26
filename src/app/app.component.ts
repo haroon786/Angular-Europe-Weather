@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OpenweatherService } from './openweather.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,12 @@ import { OpenweatherService } from './openweather.service';
 })
 export class AppComponent implements OnInit {
   title = 'Angular-Weather-App';
-  constructor(){}
 
+  constructor(){}
 
   ngOnInit(): void
   {
-    
+
   }
 
 

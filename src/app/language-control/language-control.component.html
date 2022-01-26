@@ -1,0 +1,18 @@
+
+
+<div class="row" style="float: right;">
+<mat-slide-toggle   color="primary" (click)="selectTheme()"></mat-slide-toggle>
+
+
+<mat-form-field style="margin-left: 30px;">
+  <mat-select [(value)]="selected" [(ngModel)]="selected" class="form-control" (ngModelChange)="onFoodSelection2()">
+    <mat-select-trigger>
+      <img  src="{{ selected.ImageUrl }}" style="margin-bottom: -9px;margin-right:10px;width:45px" />
+      {{ selected.Text }}
+    </mat-select-trigger>
+    <mat-option *ngFor="let item of options" [value]="item">
+      <div class="row"> <img style="margin-bottom: -9px;margin-right: 10px;width:30px" src="{{item.ImageUrl}}" />{{item.Text}}</div>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>

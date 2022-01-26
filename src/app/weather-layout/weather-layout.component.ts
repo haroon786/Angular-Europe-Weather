@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { OpenweatherService } from '../openweather.service';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-weather-layout',
   templateUrl: './weather-layout.component.html',
-  styleUrls: ['./weather-layout.component.css'],
+  styleUrls: ['./weather-layout.component.scss'],
 })
 export class WeatherLayoutComponent implements OnInit {
+
+  @Output()
+  readonly darkModeSwitched = new EventEmitter<boolean>();
+
   countryName: any;
   isExpanded = true;
   showSubmenu: boolean = false;
@@ -36,9 +41,16 @@ export class WeatherLayoutComponent implements OnInit {
       this.countryName == undefined ? 'Italy' : this.countryName;
 
     this.getWeatherDetails();
-    
+
+
   }
 
+
+
+
+  onDarkModeSwitched({ checked }: MatSlideToggleChange) {
+    this.darkModeSwitched.emit(checked);
+  }
   change(event: any) {
     this.countryName = event;
 
@@ -49,6 +61,7 @@ export class WeatherLayoutComponent implements OnInit {
 
   getWeatherDetails() {
     this.openweatherservice.getData().subscribe((data: any) => {
+     
       this.createWeatherArr(data);
       this.foreCast();
       // this.weatherDeatails(data)
@@ -74,9 +87,11 @@ export class WeatherLayoutComponent implements OnInit {
       .foreCastData(this.countryName)
       .subscribe((data: any) => {
         this.forecast = data;
-
         //making new array
-         if(this.forecastarr.length>0){ this.forecastarr=[]}
+         if(this.forecastarr.length>0)
+         {
+            this.forecastarr=[]
+        }
         Object.keys(this.forecast).forEach((key) => {
           this.forecastarr.push({
             date: data[key].dt,
@@ -91,4 +106,5 @@ export class WeatherLayoutComponent implements OnInit {
         );
       });
   }
+
 }
