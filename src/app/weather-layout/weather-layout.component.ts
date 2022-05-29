@@ -1,14 +1,48 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { OpenweatherService } from '../openweather.service';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CommonModule } from '@angular/common';
+import { LanguageControlComponent } from '../language-control/language-control.component';
+import { HomeWeatherComponent } from '../home-weather/home-weather.component';
+
 
 @Component({
   selector: 'app-weather-layout',
   templateUrl: './weather-layout.component.html',
   styleUrls: ['./weather-layout.component.scss'],
+  standalone:true,
+  imports:[
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
+    CommonModule,
+    LanguageControlComponent,
+    HomeWeatherComponent
+  ],
+
+
 })
 export class WeatherLayoutComponent implements OnInit {
 
@@ -61,7 +95,7 @@ export class WeatherLayoutComponent implements OnInit {
 
   getWeatherDetails() {
     this.openweatherservice.getData().subscribe((data: any) => {
-     
+
       this.createWeatherArr(data);
       this.foreCast();
       // this.weatherDeatails(data)

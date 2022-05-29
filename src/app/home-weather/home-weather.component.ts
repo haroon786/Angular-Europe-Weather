@@ -5,7 +5,8 @@ import { OpenweatherService } from '../openweather.service';
 @Component({
   selector: 'app-home-weather',
   templateUrl: './home-weather.component.html',
-  styleUrls: ['./home-weather.component.scss']
+  styleUrls: ['./home-weather.component.scss'],
+  standalone:true
 })
 export class HomeWeatherComponent{
 
