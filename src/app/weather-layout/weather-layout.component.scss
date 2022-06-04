@@ -36,8 +36,20 @@
 		margin: 0px;
 	}
 	>mat-nav-list {
-		>a {
+
+    display: grid;
+    grid-template-columns: 60% 30%;
+    gap: 20px;
+		>div >a{
 			color: white;
+      font-size: larger;
+
+
 		}
+    >div>img
+    {
+     padding: auto;
+     height: 43px;
+    }
 	}
 }

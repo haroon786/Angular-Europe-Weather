@@ -2,29 +2,37 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <p style="color: white;">Europe Weather</p>
+      <p style="color: white;">{{"Europe Weather"| translate}}</p>
     </mat-toolbar>
 
     <mat-accordion class="app-nav-accordion">
       <mat-nav-list>
-        <a mat-list-item (click)="change('Italy')">Italy
-          <img style="margin-left: 40px;" alt="Itlay" width="30px"
-            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/IT.svg" /></a>
-        <a mat-list-item (click)="change('Turkey')">Turkey<img style="margin-left: 23px;" alt="Itlay" width="30px"
-            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/TR.svg" /></a>
-        <a mat-list-item (click)="change('Austria')">Austria
-          <img style="margin-left: 19px;" alt="Itlay" width="30px"
-            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/AT.svg" />
-        </a>
-        <a mat-list-item (click)="change('Greece')">Greece
-          <img style="margin-left: 20px;" alt="Itlay" width="30px"
-            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/GR.svg" />
-        </a>
-        <a mat-list-item (click)="change('Russia')">Russia
-          <img style="margin-left: 20px;" alt="Itlay" width="30px"
-            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/RU.svg" />
-        </a>
+        <div>
+        <a mat-list-item (click)="change('Italy')">{{"Italy"| translate}}
+          </a>
+        <a mat-list-item (click)="change('Turkey')">{{"Turkey"|translate}} </a>
+        <a mat-list-item (click)="change('Austria')">{{"Austria" | translate}}
 
+        </a>
+        <a mat-list-item (click)="change('Greece')">{{"Greece" | translate }}
+
+        </a>
+        <a mat-list-item (click)="change('Norway')">{{"Norway" | translate }}
+
+        </a>
+        </div>
+        <div>
+          <img  alt="Itlay" width="30px"
+            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/IT.svg" />
+            <img  alt="Itlay" width="30px"
+            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/TR.svg" />
+            <img  alt="Itlay" width="30px"
+            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/AT.svg" />
+            <img  alt="Itlay" width="30px"
+            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/GR.svg" />
+            <img  alt="Itlay" width="30px"
+            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/NO.svg" />
+        </div>
         <!-- <a mat-list-item  [routerLink]="['/university-college']" routerLinkActive="router-link-active">University</a> -->
 
       </mat-nav-list>

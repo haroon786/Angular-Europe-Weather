@@ -16,6 +16,24 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {FormsModule} from '@angular/forms';
 import { OpenweatherService } from './openweather.service';
+import { LocalizedDatePipe } from './localized-date.pipe';
+import localeDe from '@angular/common/locales/de'; //german
+import localeEn from '@angular/common/locales/en'; //english
+import localeTr from '@angular/common/locales/tr'; //turkish
+import localeNb from '@angular/common/locales/nb'; //norway
+import localeEl from '@angular/common/locales/el'; //greece
+import localeIt from '@angular/common/locales/it'; //italiy
+import { registerLocaleData } from '@angular/common';
+
+
+registerLocaleData(localeEn);
+registerLocaleData(localeEl);
+registerLocaleData(localeIt);
+
+registerLocaleData(localeDe);
+registerLocaleData(localeTr);
+registerLocaleData(localeNb);
+
 
 @NgModule({
   declarations: [
@@ -23,6 +41,7 @@ import { OpenweatherService } from './openweather.service';
     HomeWeatherComponent,
     WeatherLayoutComponent,
     LanguageControlComponent,
+    LocalizedDatePipe
   ],
   imports: [
     BrowserModule,

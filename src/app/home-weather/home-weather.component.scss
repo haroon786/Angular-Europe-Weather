@@ -42,8 +42,8 @@
 
   > div {
     border-radius: 10px;
-    width: 200px;
-    height: 250px;
+    min-width: 300px;
+    min-height: 250px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
@@ -51,7 +51,9 @@
     cursor: pointer;
     border-color: #3b0435;
     border: 2px solid #008080;
+    padding: 5px;
   }
+
 }
 
 divWeatherMain > p:nth-child(2) {
@@ -60,5 +62,9 @@ divWeatherMain > p:nth-child(2) {
 
 .forecastHeadline {
   font-weight: 800;
-  font-family: cursive;
+
+}
+
+p{
+  font-size: large;
 }

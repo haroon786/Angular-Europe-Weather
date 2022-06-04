@@ -16,12 +16,17 @@ export class LanguageControlComponent implements OnInit {
   selectedFood2: any="";
  // selected:any;
  public options:any[] = [
-    {Value2 : 'tr', Text : 'Türkiye', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/TR.svg'},
-    {Value2 : 'it', Text : 'Italia', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/IT.svg'},
-    {Value2 : 'en', Text : 'English', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/EN.svg'},
+  {Value2 : 'en', Text : 'English', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg'},
+
+  {Value2 : 'it', Text : 'Italia', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/IT.svg'},
+  {Value2 : 'tr', Text : 'Türkiye', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/TR.svg'},
+  {Value2 : 'de', Text : 'Österreich', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/AT.svg'},
+  {Value2 : 'el', Text : 'Ελλάδα', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/GR.svg'},
+  {Value2 : 'nb', Text : 'Norge', ImageUrl : 'http://purecatamphetamine.github.io/country-flag-icons/3x2/NO.svg'},
 
     ];
-     selected:any = this.options[2];
+    private languageCodes: string[] = ['en', 'it', 'tr', 'de','el','nb'];
+     selected:any = this.options[0];
   isChecked:boolean = true;
 
   private static readonly DARK_THEME_CLASS = 'dark-theme';
@@ -57,10 +62,27 @@ export class LanguageControlComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectLanguageByCode(this.translate.getBrowserLang());
   }
 
-  onFoodSelection2() {
+  onFoodSelection2(e:any) {
 
     this.translate.use(this.selected.Value2);
+    this.selectLanguageByCode(e.Value2);
+  }
+  private selectLanguageByCode(languageCode: any): void {
+    this.translate.use(
+      this.isLanguageCodeSupported(languageCode)
+        ? languageCode
+        : this.translate.getDefaultLang()
+    );
+  }
+  private isLanguageCodeSupported(languageCode: string): boolean {
+    return this.languageCodes.indexOf(languageCode) > -1;
+  }
+
+
+  public get todaysDatee(): Date {
+    return new Date();
   }
 }

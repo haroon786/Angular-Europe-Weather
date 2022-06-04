@@ -20,14 +20,14 @@
   </div>
 
   <div *ngFor="let item of forecastArr">
-    <p class="forecastHeadline">ForeCast Weather</p>
+    <p class="forecastHeadline">{{"Forecast Weather" |translate}}</p>
 
     <i class="fas fa-3x fa-moon moon"></i>
     <br />
     <div class="cloudDiv">
       <i class="fas fa-water fa-3x cloud"></i>
     </div>
-    <p style="margin-top: 20px">{{'Date'|translate}} : {{ item.date * 1000 | date }}</p>
+    <p style="margin-top: 20px">{{'Date'|translate}} : {{ item.date * 1000 | localizedDate }}</p>
     <p>{{'temp'|translate}} :{{ item.temp }}°C</p>
     <p>{{'Sea level'|translate}} : {{ item.seaLevel }}</p>
   </div>

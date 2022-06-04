@@ -1,8 +1,7 @@
 {
 
-  "Contry":"Name",
-    "ContryName": "{{value}}",
+    "Contry":"Name",
     "Italy":"Italy",
-    "Turkey":"turkey"
+    "Turkey":"Turkey"
 
 }
